@@ -11,7 +11,8 @@ namespace promocat\twofa\widgets;
 use Yii;
 use yii\base\Widget;
 
-class TwoFaQr extends Widget {
+class TwoFaQr extends Widget
+{
 
     public $twoFaComponent = 'twoFa';
     public $secret;
@@ -23,13 +24,15 @@ class TwoFaQr extends Widget {
     /** @var \promocat\twofa\TwoFa */
     private $twoFa;
 
-    public function init() {
+    public function init()
+    {
         parent::init();
         $this->twoFa = Yii::$app->get($this->twoFaComponent);
         $this->issuer = $this->issuer === null ? Yii::$app->name : $this->issuer;
     }
 
-    public function run() {
+    public function run()
+    {
         $twoFaQrCodeUrl = $this->twoFa->generateQrCodeInline(
             $this->issuer,
             $this->accountName,
@@ -39,10 +42,11 @@ class TwoFaQr extends Widget {
         $this->renderWidget($this->secret, $twoFaQrCodeUrl);
     }
 
-    public function renderWidget($secret, $twoFaQrCodeUrl) {
+    public function renderWidget($secret, $twoFaQrCodeUrl)
+    {
         ?>
         <div>
-            <img src="<?= $twoFaQrCodeUrl ?>" alt="<?= $secret ?>"/>
+            <img src="data:image/png;base64,<?= $twoFaQrCodeUrl ?>" alt="<?= $secret ?>"/>
         </div>
         <?php if ($this->showSecret === true) { ?>
             <p>
