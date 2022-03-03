@@ -36,17 +36,16 @@ class TwoFaQr extends Widget
         $twoFaQrCodeUrl = $this->twoFa->generateQrCodeInline(
             $this->issuer,
             $this->accountName,
-            $this->secret,
-            $this->size
+            $this->secret
         );
-        $this->renderWidget($this->secret, $twoFaQrCodeUrl);
+        $this->renderWidget($this->secret, $twoFaQrCodeUrl, $this->size);
     }
 
-    public function renderWidget($secret, $twoFaQrCodeUrl)
+    public function renderWidget($secret, $twoFaQrCodeUrl, $size)
     {
         ?>
         <div>
-            <img src="data:image/png;base64,<?= $twoFaQrCodeUrl ?>" alt="<?= $secret ?>"/>
+            <img src="data:image/png;base64,<?= $twoFaQrCodeUrl ?>" alt="<?= $secret ?>" width="<?= $size ?>"/>
         </div>
         <?php if ($this->showSecret === true) { ?>
             <p>
