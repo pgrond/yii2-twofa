@@ -1,5 +1,5 @@
 {
-  "name": "promocat/yii2-twofa",
+  "name": "pgrond/yii2-twofa",
   "type": "yii2-extension",
   "description": "Provides TOTP and QR codes for use with an authenticator like the one from Google or Authy",
   "keywords": [
